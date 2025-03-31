@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hedera-dev/langgraph-hedera-workshop.git"
@@ -29,7 +30,7 @@
     "@langchain/core": "0.3.40",
     "@langchain/langgraph": "0.2.48",
     "@langchain/openai": "0.4.4",
-    "dotenv": "16.4.7",
+    "dotenv": "^16.4.7",
     "hedera-agent-kit": "1.0.4",
     "openapi-mcp-server": "1.2.0-beta05",
     "zod": "3.24.2"
