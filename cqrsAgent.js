@@ -40,11 +40,15 @@ Do you approve? (y/N)`;
 
   const isApproved = (interruptResponse.trim().charAt(0).toLowerCase() === 'y');
   if (isApproved) {
+    // Log the approval
+    console.log(`User approved the following tool call(s): ${readableSummaryOfToolCalls}`);
     // proceed to the tools node
     return new Command({
       goto: 'tools',
     });
   } else {
+    // Log the rejection
+    console.log(`User rejected the following tool call(s): ${readableSummaryOfToolCalls}`);
     // proceed to the END node
     const rejectionMessages = commandToolCalls.map((toolCall) => (
       new ToolMessage({

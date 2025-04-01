@@ -1,7 +1,7 @@
 {
-  "name": "langgraph-hedera-workshop",
+  "name": "ai-agent-hedera-hashathon",
   "version": "0.0.0",
-  "description": "Build AI agents for Hedera using LangGraph",
+  "description": "AI agent for Hedera Hashathon using LangGraph",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,24 +9,24 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hedera-dev/langgraph-hedera-workshop.git"
+    "url": "https://github.com/Ger-Cub/ai-agent-hedera-hashaton"
   },
   "keywords": [
     "ai",
     "agent",
     "langgraph",
-    "workshop",
-    "tutorial"
+    "hedera",
+    "hashathon"
   ],
-  "author": "bguiz",
+  "author": "gerard",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hedera-dev/langgraph-hedera-workshop/issues"
+    "url": "https://github.com/Ger-Cub/ai-agent-hedera-hashaton/issues"
   },
-  "homepage": "https://github.com/hedera-dev/langgraph-hedera-workshop#readme",
+  "homepage": "https://github.com/Ger-Cub/ai-agent-hedera-hashaton#readme",
   "dependencies": {
     "@h1deya/langchain-mcp-tools": "0.1.14",
-    "@hashgraph/sdk": "2.59.0",
+    "@hashgraph/sdk": "^2.59.0",
     "@langchain/core": "0.3.40",
     "@langchain/langgraph": "0.2.48",
     "@langchain/openai": "0.4.4",

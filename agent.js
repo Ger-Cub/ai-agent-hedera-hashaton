@@ -6,11 +6,11 @@ import { MemorySaver } from '@langchain/langgraph';
 import { createReactAgent } from '@langchain/langgraph/prebuilt';
 import { HumanMessage } from '@langchain/core/messages';
 import { queryJokeTool } from './tools/joke.js';
-import { commandHcsCreateTopicTool, commandHcsSubmitTopicMessageTool } from './tools/hedera.js';
+import { commandHcsCreateTopicTool, commandHcsSubmitTopicMessageTool, commandHcsGetAccountBalanceTool } from './tools/hedera.js'; // Updated to include new tool
 import { createInstance } from './api/openrouter-openai.js';
 
 const llm = createInstance();
-const tools = [queryJokeTool, commandHcsCreateTopicTool, commandHcsSubmitTopicMessageTool];
+const tools = [queryJokeTool, commandHcsCreateTopicTool, commandHcsSubmitTopicMessageTool, commandHcsGetAccountBalanceTool]; // Updated tools array
 const checkpointSaver = new MemorySaver();
 const agent = createReactAgent({
   llm,
@@ -35,6 +35,11 @@ async function readUserPrompt() {
 }
 
 async function obtainAgentReply(userPrompt) {
+  // Security measure: Validate user input
+  if (!userPrompt || userPrompt.trim() === '') {
+    return "Invalid input. Please provide a valid prompt.";
+  }
+
   const reply = await agent.invoke(
     {
       messages: [new HumanMessage(userPrompt)],
@@ -56,19 +61,3 @@ while (true) {
   const agentReply = await obtainAgentReply(userPrompt);
   console.log(agentReply);
 }
-
-/*
-const prompt = `Please generate a joke about a car.
-Also generate one about a bar.`;
-*/
-
-// const reply = await agent.invoke(
-//   {
-//     messages: [new HumanMessage(prompt)],
-//   },
-//   {
-//     configurable: { thread_id: '0x0001' },
-//   },
-// );
-
-// console.log(reply.messages[reply.messages.length - 1].content);
