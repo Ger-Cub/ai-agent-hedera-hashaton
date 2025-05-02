@@ -54,9 +54,11 @@ async function obtainAgentReply(userPrompt) {
 }
 
 while (true) {
+  console.log('=========================================================\n');
   console.log('You:\n');
   const userPrompt = await readUserPrompt();
 
+  console.log('=========================================================\n');
   console.log('Agent:\n');
   const agentReply = await obtainAgentReply(userPrompt);
   console.log(agentReply);

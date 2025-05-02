@@ -1,4 +1,4 @@
-import { Client, PrivateKey, ContractCreateFlow, FileCreateTransaction } from "@hashgraph/sdk";
+import { Client, PrivateKey, ContractCreateFlow, FileCreateTransaction, ContractFunctionParameters } from "@hashgraph/sdk";
 import fs from "fs";
 import dotenv from "dotenv";
 
@@ -27,8 +27,9 @@ async function main() {
     const contractCreateTx = new ContractCreateFlow()
         .setBytecode(bytecode)
         .setGas(100000)
-        .setConstructorParameters(["Hello, Hedera!"]); // Update with your constructor argument
-let contractCreateSubmit;
+        .setConstructorParameters(new ContractFunctionParameters().addString("Hello, Hedera!"))
+        // .setConstructorParameters(["Hello, Hedera!"]); // Update with your constructor argument
+let contractCreateSubmit; 
 try {
     contractCreateSubmit = await contractCreateTx.execute(client);
 } catch (error) {
@@ -37,7 +38,9 @@ try {
 }
     const contractReceipt = await contractCreateSubmit.getReceipt(client);
     const contractId = contractReceipt.contractId;
-    console.log(`✅ Smart contract deployed with ID: ${contractId}`);
+    const contractAdress = contractId.toSolidityAddress();
+    console.log(`✅ Smart contract deployed with ID: ${contractId} \n`);
+    console.log(`✅ Smart contract deployed with ID in solidity format: ${contractAdress} \n`);
 
     // Exit script
     process.exit();
